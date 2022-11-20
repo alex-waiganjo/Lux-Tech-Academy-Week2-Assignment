@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+</head>
+<body>
+    <h1>Hello there!!</h1>
+    <p>Hello  <mark>Alex</mark> ,how are you doing</p>
+    <div class="content">
+        <table>
+            <tr>
+                <th>TASK</th>
+                <th> DATE ADDED</th>
+                <th>OPERATIONS</th>
+            </tr> 
+            {% for task in html_data %}          
+            <tr>
+           <td>{{ task.content }}</td>
+           <td>{{ task.date_created.date() }}</td>
+           <td>
+               <button style="background-color:cornflowerblue"><a href="/update/{{task.id}}">Update</a></button><br>               
+               <button style="background-color:cornflowerblue"><a href="/delete/{{task.id}}">Delete</a></button>
+           </td>
+           </tr>     
+           {% endfor %}     
+        </table>
+    </div>
+    <form  method="Post">
+        <label for="note">Write a Simple Note</label>
+        <input type="text" id="note" name="note" placeholder="note..."><br><br>
+        <button type="submit">
+            Post
+        </button>
+        
+    </form>
+</body>
+</html>
